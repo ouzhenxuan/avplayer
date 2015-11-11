@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomPlayerView.h"
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet CustomPlayerView *cusromPlayer;
+@property (weak, nonatomic) IBOutlet UILabel *lab;
 
 @end
 

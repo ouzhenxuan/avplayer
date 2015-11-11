@@ -1,25 +1,109 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qYX-IB-wxy">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="aEw-H3-Le9">
+            <objects>
+                <navigationController id="qYX-IB-wxy" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bhx-GU-yBg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8dq-iX-HP4" kind="relationship" relationship="rootViewController" id="9Pm-ns-6lj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nlo-3U-WzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1040" y="275"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tAD-al-VrX">
+            <objects>
+                <viewController id="8dq-iX-HP4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vI1-j5-yet"/>
+                        <viewControllerLayoutGuide type="bottom" id="q9l-9h-J6Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lTI-xJ-vDF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdV-Zq-iHf">
+                                <rect key="frame" x="48" y="120" width="90" height="30"/>
+                                <state key="normal" title="进入视频播放"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="nRO-4R-Pl6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wdV-Zq-iHf" firstAttribute="leading" secondItem="lTI-xJ-vDF" secondAttribute="leading" constant="48" id="FIO-ha-00M"/>
+                            <constraint firstItem="wdV-Zq-iHf" firstAttribute="top" secondItem="vI1-j5-yet" secondAttribute="bottom" constant="56" id="kN7-gI-hKk"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="pBU-pq-6gd"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JV7-lS-Ulj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-566.5" y="269.5"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i4k-qg-cH6" customClass="CustomPlayerView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="i4k-qg-cH6" secondAttribute="height" multiplier="1:1" id="R1T-z9-G0e"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUy-cv-edf">
+                                <rect key="frame" x="0.0" y="462" width="280" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="u6G-nI-Hhj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fUy-cv-edf" firstAttribute="top" secondItem="i4k-qg-cH6" secondAttribute="bottom" constant="23" id="6b7-gv-3wE"/>
+                            <constraint firstAttribute="trailing" secondItem="i4k-qg-cH6" secondAttribute="trailing" id="GN8-z4-hH0"/>
+                            <constraint firstItem="i4k-qg-cH6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Pac-w1-g9M"/>
+                            <constraint firstItem="fUy-cv-edf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="X2S-NL-baL"/>
+                            <constraint firstItem="i4k-qg-cH6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YhA-7P-a20"/>
+                            <constraint firstAttribute="trailing" secondItem="fUy-cv-edf" secondAttribute="trailing" constant="95" id="qeo-iF-NOe"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="cusromPlayer" destination="i4k-qg-cH6" id="ci9-YZ-kbA"/>
+                        <outlet property="lab" destination="fUy-cv-edf" id="iON-JO-gbH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-150.5" y="269.5"/>
         </scene>
     </scenes>
 </document>
