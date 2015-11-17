@@ -11,7 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "UIImage+SUImage.h"
 
-#define device_width [UIScreen mainScreen].bounds.size.width
+#define DEVICE_WIDTH [UIScreen mainScreen].bounds.size.width
 #define device_height [UIScreen mainScreen].bounds.size.height
 
 @interface ViewController ()
@@ -20,6 +20,14 @@
     UISlider *_movieProgressSlider;
     CGFloat  totalMovieDuration;
     UIProgressView  *_progressView;
+    
+    
+    UIActivityIndicatorView * videoLoding;      //视频缓冲
+    UIImageView * videoPlay;
+    int recordCurrentTime;
+    
+    IBOutlet UILabel * showTheTime ;                     //显示快进快退的时间
+    NSString * originalTime;                    //原始时间
 }
 @property (retain, nonatomic) UISlider *movieProgressSlider;
 @property (retain, nonatomic) UIProgressView  *progressView;
@@ -78,8 +86,84 @@
     oneTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(oneTap:)];
     oneTap.numberOfTapsRequired = 1;
     [_cusromPlayer addGestureRecognizer:oneTap];
-
     
+    UIPanGestureRecognizer *panTheVideo=nil;
+    panTheVideo=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panTheVieoView:)];
+    [_cusromPlayer addGestureRecognizer:panTheVideo];
+    
+}
+
+#pragma mark - 视频页面拖动处理
+- (void) panTheVieoView:(UIPanGestureRecognizer *)recognizer
+{
+    CGPoint translatedPoint = [recognizer translationInView:self.view];
+    CGFloat firstX = 0.0;
+    //    CGFloat firstY = 0.0;
+    
+    if ([(UIPanGestureRecognizer *)recognizer state] == UIGestureRecognizerStateBegan) {
+        recordCurrentTime = floor(totalMovieDuration * self.movieProgressSlider.value);
+        //        originalTime = [self secondToTime:recordCurrentTime];
+        originalTime = [self secondToTime:totalMovieDuration];
+        showTheTime.hidden = NO;
+    }
+    
+    if ([(UIPanGestureRecognizer *)recognizer state] == UIGestureRecognizerStateChanged) {
+        CGFloat x = firstX + translatedPoint.x;
+        //        CGFloat y = firstX + translatedPoint.y;
+        
+        
+        
+        CGFloat precent =  x /DEVICE_WIDTH;         //获取移动的百分比
+        CGFloat panToTime = recordCurrentTime + totalMovieDuration * precent;       //移动到第几秒
+        int intpanToTime = floorf(panToTime);
+        if (intpanToTime<0) {
+            intpanToTime = 0;
+        }else if (intpanToTime>totalMovieDuration){
+            intpanToTime = totalMovieDuration;
+        }
+        
+        //秒数转换为时间
+        NSString * showtimeNew = [self secondToTime:intpanToTime];
+        NSLog(@"totalMovieDuration:%@",showtimeNew);
+        
+        //转换成CMTime才能给player来控制播放进度
+        CMTime dragedCMTime = CMTimeMake(intpanToTime, 1);
+        [_cusromPlayer.player seekToTime:dragedCMTime completionHandler:
+         ^(BOOL finish)
+         {
+             if (isPlaying == YES)
+             {
+                 [_cusromPlayer.player play];
+             }
+         }];
+        
+        showTheTime.text = [NSString stringWithFormat:@"%@ / %@",showtimeNew,originalTime];
+    }
+    
+    if (([(UIPanGestureRecognizer *)recognizer state] == UIGestureRecognizerStateEnded) || ([(UIPanGestureRecognizer *)recognizer state] == UIGestureRecognizerStateCancelled)) {
+        CGFloat x = recognizer.view.center.x;
+        CGFloat y = recognizer.view.center.y;
+        NSLog(@"x:%f  y:%f",x,y);
+        
+        showTheTime.hidden = YES;
+    }
+    
+}
+
+
+//秒转化为时间
+- (NSString *)secondToTime :(int)second{
+    NSDate *d = [NSDate dateWithTimeIntervalSince1970:second];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    if (second/3600 >= 1) {
+        [formatter setDateFormat:@"HH:mm:ss"];
+    }
+    else
+    {
+        [formatter setDateFormat:@"mm:ss"];
+    }
+    NSString *showtimeNew = [formatter stringFromDate:d];
+    return showtimeNew;
 }
 
 -(void)moviePlayDidEnd:(NSNotification*)notification{
@@ -175,6 +259,7 @@
     }
 }
 
+
 -(void)monitorMovieProgress{
 //    [self.Moviebuffer startAnimating];
     //使用movieProgressSlider反应视频播放的进度
@@ -185,16 +270,7 @@
         //转成秒数
         CGFloat currentPlayTime = (CGFloat)currentTime.value/currentTime.timescale;
         _movieProgressSlider.value = currentPlayTime/totalMovieDuration;
-        NSDate *d = [NSDate dateWithTimeIntervalSince1970:currentPlayTime];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        if (currentPlayTime/3600 >= 1) {
-            [formatter setDateFormat:@"HH:mm:ss"];
-        }
-        else
-        {
-            [formatter setDateFormat:@"mm:ss"];
-        }
-        NSString *showtime = [formatter stringFromDate:d];
+        NSString * showtime = [self secondToTime:totalMovieDuration];
         self.lab.text = showtime;
     }];
     
@@ -205,8 +281,8 @@
     UIImage *thumbImage = [UIImage imageFromColor:[UIColor clearColor] frame:CGRectMake(0, 0, 1, 12)];
     
 
-    self.movieProgressSlider = [[UISlider alloc]initWithFrame:CGRectMake(0, device_width + 64-12, device_width, 12)];
-    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, device_width +64 -7 , device_width, 12)];
+    self.movieProgressSlider = [[UISlider alloc]initWithFrame:CGRectMake(0, DEVICE_WIDTH + 64-12, DEVICE_WIDTH, 12)];
+    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, DEVICE_WIDTH +64 -7 , DEVICE_WIDTH, 12)];
     
     self.progressView.transform = CGAffineTransformMakeScale(1.0f,6.0f);
     
