@@ -70,50 +70,22 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i4k-qg-cH6" customClass="CustomPlayerView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="375"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00/25:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfT-Uc-NDq">
-                                        <rect key="frame" x="0.0" y="30" width="375" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="AHo-ZP-aJm"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="HfT-Uc-NDq" secondAttribute="trailing" id="4vl-Fn-V4e"/>
-                                    <constraint firstItem="HfT-Uc-NDq" firstAttribute="leading" secondItem="i4k-qg-cH6" secondAttribute="leading" id="CCv-xb-ofz"/>
                                     <constraint firstAttribute="width" secondItem="i4k-qg-cH6" secondAttribute="height" multiplier="1:1" id="R1T-z9-G0e"/>
-                                    <constraint firstItem="HfT-Uc-NDq" firstAttribute="top" secondItem="i4k-qg-cH6" secondAttribute="top" constant="30" id="h14-ZB-zoI"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUy-cv-edf">
-                                <rect key="frame" x="0.0" y="462" width="280" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="u6G-nI-Hhj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fUy-cv-edf" firstAttribute="top" secondItem="i4k-qg-cH6" secondAttribute="bottom" constant="23" id="6b7-gv-3wE"/>
                             <constraint firstAttribute="trailing" secondItem="i4k-qg-cH6" secondAttribute="trailing" id="GN8-z4-hH0"/>
                             <constraint firstItem="i4k-qg-cH6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Pac-w1-g9M"/>
-                            <constraint firstItem="fUy-cv-edf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="X2S-NL-baL"/>
                             <constraint firstItem="i4k-qg-cH6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YhA-7P-a20"/>
-                            <constraint firstAttribute="trailing" secondItem="fUy-cv-edf" secondAttribute="trailing" constant="95" id="qeo-iF-NOe"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="cusromPlayer" destination="i4k-qg-cH6" id="ci9-YZ-kbA"/>
-                        <outlet property="lab" destination="fUy-cv-edf" id="iON-JO-gbH"/>
-                        <outlet property="showTheTime" destination="HfT-Uc-NDq" id="RUq-Qf-c5x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
