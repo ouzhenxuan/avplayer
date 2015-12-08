@@ -19,6 +19,7 @@
 		20FE8CF31BF2D9C70035A93E /* NSDate+SUDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FE8CEE1BF2D9C70035A93E /* NSDate+SUDate.m */; };
 		20FE8CF41BF2D9C70035A93E /* NSString+SUString.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FE8CF01BF2D9C70035A93E /* NSString+SUString.m */; };
 		20FE8CF51BF2D9C70035A93E /* UIImage+SUImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FE8CF21BF2D9C70035A93E /* UIImage+SUImage.m */; };
+		BDA8E3D96BB0A1F786E735EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5346CD623ECDF60337D9B21 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,9 @@
 		20FE8CF01BF2D9C70035A93E /* NSString+SUString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SUString.m"; sourceTree = "<group>"; };
 		20FE8CF11BF2D9C70035A93E /* UIImage+SUImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SUImage.h"; sourceTree = "<group>"; };
 		20FE8CF21BF2D9C70035A93E /* UIImage+SUImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SUImage.m"; sourceTree = "<group>"; };
+		7F4E99E0A8DAA0C5A7533217 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A5346CD623ECDF60337D9B21 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8B5312AE1E1699467E4CC2E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,12 +55,30 @@
 			files = (
 				20065B721BE2847600112B69 /* MediaPlayer.framework in Frameworks */,
 				20065B701BE2846200112B69 /* AVFoundation.framework in Frameworks */,
+				BDA8E3D96BB0A1F786E735EB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02C2B8989470B6BC765085C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5346CD623ECDF60337D9B21 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		12D161523ECF31A63B79F011 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F4E99E0A8DAA0C5A7533217 /* Pods.debug.xcconfig */,
+				E8B5312AE1E1699467E4CC2E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		20065B491BE27D3000112B69 = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +86,8 @@
 				20065B6F1BE2846200112B69 /* AVFoundation.framework */,
 				20065B541BE27D3000112B69 /* avplayer */,
 				20065B531BE27D3000112B69 /* Products */,
+				12D161523ECF31A63B79F011 /* Pods */,
+				02C2B8989470B6BC765085C1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,9 +154,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20065B691BE27D3000112B69 /* Build configuration list for PBXNativeTarget "avplayer" */;
 			buildPhases = (
+				FAB9D4DC7F15781820C9B02D /* Check Pods Manifest.lock */,
 				20065B4E1BE27D3000112B69 /* Sources */,
 				20065B4F1BE27D3000112B69 /* Frameworks */,
 				20065B501BE27D3000112B69 /* Resources */,
+				87B025BF2CA29334435E9208 /* Embed Pods Frameworks */,
+				D556DCCF89243B933C15F310 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -187,6 +214,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		87B025BF2CA29334435E9208 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D556DCCF89243B933C15F310 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAB9D4DC7F15781820C9B02D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		20065B4E1BE27D3000112B69 /* Sources */ = {
@@ -309,6 +384,7 @@
 		};
 		20065B6A1BE27D3000112B69 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F4E99E0A8DAA0C5A7533217 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = avplayer/Info.plist;
@@ -321,6 +397,7 @@
 		};
 		20065B6B1BE27D3000112B69 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8B5312AE1E1699467E4CC2E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = avplayer/Info.plist;

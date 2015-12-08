@@ -42,10 +42,14 @@
 }
 
 
-- (void)setMyPlayerWithUrl:(NSString *)url{
+- (void)setMyPlayerWithUrl:(NSString *)url Isfile:(BOOL)isFile{
+    NSURL *sourceMovieURL;
+    if (isFile) {
+        sourceMovieURL = [NSURL fileURLWithPath:url];
+    }else{
+        sourceMovieURL = [NSURL URLWithString:url];
+    }
     
-    
-    NSURL *sourceMovieURL = [NSURL URLWithString:url];
     
     //使用playerItem获取视频的信息，当前播放时间，总时间等
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:sourceMovieURL];
@@ -168,11 +172,15 @@
         float bufferTime = [self availableDuration];
         NSLog(@"缓冲进度%f",bufferTime);
         float durationTime = CMTimeGetSeconds([[self.player currentItem] duration]);
-        [self.progressView setProgress:bufferTime/durationTime animated:YES];
+//        [self.progressView setProgress:bufferTime/durationTime animated:YES];
     }
     
 }
 
+//设置真实下载的进度
+-(void) setTheTrueProgress:(CGFloat)precent{
+    [self.progressView setProgress:precent animated:YES];
+}
 
 -(void)monitorMovieProgress{
     //    [self.Moviebuffer startAnimating];
